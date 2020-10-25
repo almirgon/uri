@@ -1,0 +1,15 @@
+.login-page {
+  width: 100%;
+  display: flex;
+}
+.intro {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.login {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
