@@ -1,7 +1,17 @@
 body {
   background: #24292e;
-} /* You can add global styles to this file, and also import other style files */
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
+}
 
-p {
-  color: white;
+.toast-title {
+  font-family: Poppins;
+}
+
+.toast-message {
+  font-family: Poppins;
+}
+* {
+  outline: none;
 }

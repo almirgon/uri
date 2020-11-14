@@ -9,8 +9,17 @@ import { LoginComponent } from './pages/login/login.component';
 import { TeamComponent } from './pages/team/team.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { Error404Component } from './components/error404/error404.component';
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { HomeComponent } from './pages/home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoadingComponent } from './components/loading/loading.component';
+import { ForgotPasswordComponent } from '../app/pages/forgot-password/forgot-password.component';
+import { EvaluationComponent } from './pages/evaluation/evaluation.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { AvatarModule } from 'ngx-avatar';
+import { HttpClientModule } from '@angular/common/http';
+import { NoteComponent } from './pages/note/note.component';
 
 @NgModule({
   declarations: [
@@ -20,15 +29,31 @@ import { HomeComponent } from './pages/home/home.component';
     TeamComponent,
     RegisterComponent,
     Error404Component,
+    HomeComponent,
+    LoadingComponent,
     ForgotPasswordComponent,
-    HomeComponent
+    EvaluationComponent,
+    ProfileComponent,
+    NoteComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    AvatarModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      maxOpened: 3,
+      preventDuplicates: true,
+    }),
   ],
+  exports: [],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

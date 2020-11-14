@@ -1,0 +1,24 @@
+<section class="evaluation-page">
+  <div class="intro">
+    <img src="../../../assets/imgs/search.gif" alt="uni-search" />
+  </div>
+  <div class="flex">
+    <h2>Encontre professores e disciplinas</h2>
+    <div class="box">
+      <div class="container-1">
+        <span class="material-icons"> search </span>
+        <input type="search" id="search" placeholder="Pesquisar..." />
+      </div>
+    </div>
+    <div class="list">
+      <div class="my-loop" *ngFor="let item of all_list">
+        <div class="card" (click)="redirectTo(item)">
+          <div class="info">
+            <h3>{{ item.nome }}</h3>
+            <p>{{ item.disciplina }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
