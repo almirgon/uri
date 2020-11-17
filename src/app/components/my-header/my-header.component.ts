@@ -8,9 +8,13 @@ import { Router } from '@angular/router';
 })
 export class MyHeaderComponent implements OnInit {
   public logged: boolean;
+  public admin: boolean;
   constructor(private route: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.logged = true;
+    this.admin = false;
+  }
 
   goToLogin() {
     this.route.navigate(['/login']);
@@ -29,11 +33,19 @@ export class MyHeaderComponent implements OnInit {
   }
 
   goToProfile() {
-    //this.route.navigate(['/profile']);
+    this.route.navigate(['/profile']);
   }
 
   goToEvaluation() {
-    //this.route.navigate(['/avaliation']);
+    this.route.navigate(['/evaluation']);
+  }
+
+  goToAdmin() {
+    this.route.navigate(['/admin']);
+  }
+
+  goToVoteAdmin() {
+    this.route.navigate(['/admin-vote']);
   }
 
   logout() {

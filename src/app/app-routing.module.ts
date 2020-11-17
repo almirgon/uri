@@ -9,6 +9,8 @@ import { HomeComponent } from '../app/pages/home/home.component';
 import { EvaluationComponent } from '../app/pages/evaluation/evaluation.component';
 import { NoteComponent } from '../app/pages/note/note.component';
 import { ProfileComponent } from '../app/pages/profile/profile.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { AdminVoteComponent } from './pages/admin-vote/admin-vote.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'evaluation', component: EvaluationComponent },
   { path: 'note/:id', component: NoteComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'admin', component: AdminComponent },
+  { path: 'admin-vote', component: AdminVoteComponent },
   { path: '404', component: Error404Component },
   { path: '**', redirectTo: '/404' },
 ];

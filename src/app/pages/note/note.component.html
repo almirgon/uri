@@ -5,18 +5,33 @@
 
   <div class="flex">
     <div class="note">
-      <h2>Avaliar</h2>
+      <h2>Avaliação</h2>
       <ngx-avatar
         class="my-avatar"
         size="120"
         name="Nome Professor"
       ></ngx-avatar>
       <h3>Nome do professor</h3>
-      <h5>Disciplina do professor</h5>
+      <h5>Disciplina atual do professor</h5>
       <ngb-rating max="5" [(rate)]="currentRate"></ngb-rating>
+      <button class="button" type="submit">Avaliar</button>
     </div>
+
     <div class="previous">
       <h2>Avaliações Anteriores</h2>
+      <div class="list">
+        <div class="evaluation" *ngFor="let evaluation of evaluations">
+          <div class="card">
+            <div class="info">
+              <h4>{{ evaluation.subject }}</h4>
+              <div>
+                <p>Nota final: {{ evaluation.note }}</p>
+                <p>Período: {{ evaluation.period }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

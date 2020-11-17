@@ -20,6 +20,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { AvatarModule } from 'ngx-avatar';
 import { HttpClientModule } from '@angular/common/http';
 import { NoteComponent } from './pages/note/note.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { AdminVoteComponent } from './pages/admin-vote/admin-vote.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { NoteComponent } from './pages/note/note.component';
     EvaluationComponent,
     ProfileComponent,
     NoteComponent,
+    AdminComponent,
+    AdminVoteComponent,
   ],
   imports: [
     BrowserModule,
