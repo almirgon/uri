@@ -1,5 +1,82 @@
 {
-  "login": [{ "id": 1, "email": "gustavo@gmail.com", "password": "123456" }],
+  "register": [
+    {
+      "id": 1,
+      "firstName": "Gustavo",
+      "lastName": "Silva",
+      "email": "gustavo@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "firstName": "Guilherme",
+      "lastName": "Coelho",
+      "email": "guilherme@gmail.com",
+      "password": "guilherme123"
+    },
+    {
+      "id": 3,
+      "firstName": "Arthur",
+      "lastName": "Araújo",
+      "email": "arthur@gmail.com",
+      "password": "arthur123"
+    },
+    {
+      "id": 4,
+      "firstName": "Almir",
+      "lastName": "Silva",
+      "email": "almir@gmail.com",
+      "password": "almir123"
+    },
+    {
+      "id": 5,
+      "firstName": "Carol",
+      "lastName": "Silva",
+      "email": "carol@gmail.com",
+      "password": "carol123"
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    }
+  ],
+  "login": [
+    {
+      "id": 1,
+      "email": "gustavo@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "email": "guilherme@gmail.com",
+      "password": "guilherme123"
+    },
+    {
+      "id": 3,
+      "email": "arthur@gmail.com",
+      "password": "arthur123"
+    },
+    {
+      "id": 4,
+      "email": "vera@gmail.com",
+      "password": "vera123"
+    },
+    {
+      "id": 5,
+      "email": "carol@gmail.com",
+      "password": "carol123"
+    },
+    {
+      "email": "carol@gmail.com",
+      "password": "carol123",
+      "id": 6
+    },
+    {
+      "id": 7
+    }
+  ],
   "evaluation": [
     {
       "id": 1,
@@ -52,5 +129,7 @@
       "disciplina": "Sistemas Operacionais"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "name": "typicode"
+  }
 }

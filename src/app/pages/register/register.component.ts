@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { User } from '../../models/User';
+import { RegisterService } from '../../services/register.service';
 
 @Component({
   selector: 'register',
@@ -9,11 +10,14 @@ import { User } from '../../models/User';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+
+  records: Array<any> = [];
+
   public formRegister: FormGroup;
   public successful: boolean;
   public loading: boolean;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private service: RegisterService) {
     this.loading = false;
     this.successful = true;
     this.formRegister = new FormGroup({
@@ -33,21 +37,34 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.service.getAll().subscribe((itens) => {
+      itens.forEach((item) => {
+        console.log(item);
+        this.records.push(item);
+      });
+    });
+  }
 
   redirectToLogin(): void {
     this.router.navigate(['/login']);
   }
 
-  register() {
-    let user = new User();
-    user.firstName = this.formRegister.get('name').value;
-    user.lastName = this.formRegister.get('lastname').value;
-    user.email = this.formRegister.get('email').value;
-    user.password = this.formRegister.get('password').value;
+  register(): void {
+
     this.loading = true;
 
-    //this.redirectToLogin();
+    let firstName = this.formRegister.get('name').value;
+    let lastName = this.formRegister.get('lastname').value;
+    let email = this.formRegister.get('email').value;
+    let password = this.formRegister.get('password').value;
+
+    fetch('http://localhost:3000/register', { method: 'POST', body: JSON.stringify({ 'firstName': firstName, 'lastName': lastName, 'email': email, 'password': password }) })
+      .then((response) => {
+        if (response.ok) {
+          this.router.navigate(['/login']);
+        }
+      })
   }
 
   isFormFieldInvalid(field: string): boolean {
