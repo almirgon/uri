@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EvaluationService } from '../../services/evaluation.service';
 
 @Component({
   selector: 'app-evaluation',
@@ -7,63 +8,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./evaluation.component.css'],
 })
 export class EvaluationComponent implements OnInit {
-  all_list: any = [];
+  all_list: Array<any> = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private service: EvaluationService) {}
 
-  ngOnInit(): void {
-    this.all_list = [
-      {
-        id: 1,
-        nome: 'Dalton Serrey',
-        disciplina: 'Programação 1',
-      },
-      {
-        id: 2,
-        nome: 'Melina Mongiovi',
-        disciplina: 'Projeto de Software',
-      },
-      {
-        id: 3,
-        nome: 'Joseana Fechine',
-        disciplina: 'Organização de Computadores',
-      },
-      {
-        id: 4,
-        nome: 'Adalberto Cajueiro',
-        disciplina: 'Estrutura de Dados',
-      },
-      {
-        id: 5,
-        nome: 'João Arthur',
-        disciplina: 'Arquitetura de Software',
-      },
-      {
-        id: 6,
-        nome: 'Franklin Ramalho',
-        disciplina: 'Análise de Sistemas',
-      },
-      {
-        id: 7,
-        nome: 'Kyller Gorgônio',
-        disciplina: 'Teoria da Computação',
-      },
-      {
-        id: 8,
-        nome: 'Rohit Gheyi',
-        disciplina: 'Engenharia de Software',
-      },
-      {
-        id: 9,
-        nome: 'Joao',
-        disciplina: 'Redes de Computadores',
-      },
-      {
-        id: 10,
-        nome: 'Francisco Brasileiro',
-        disciplina: 'Sistemas Operacionais',
-      },
-    ];
+  ngOnInit() {
+    this.service.getAll().subscribe((itens) => {
+      itens.forEach((item) => {
+        console.log(item);
+        this.all_list.push(item);
+      });
+    });
   }
 
   redirectTo(item) {
