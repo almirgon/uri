@@ -13,7 +13,7 @@
             <h3>{{ item.notice }}</h3>
             <div class="user">
               <div class="likes">
-                <span class="material-icons"> thumb_up_alt </span>
+                <span (click)="like(item)" class="material-icons"> thumb_up_alt </span>
                 <h6>{{ item.likes }}</h6>
               </div>
               <div>

@@ -4,23 +4,23 @@
   </div>
 
   <div class="flex">
-    <div class="note">
+    <div class="note" *ngIf="!computed">
       <h2>Avaliação</h2>
-      <ngx-avatar
-        class="my-avatar"
-        size="120"
-        name="Nome Professor"
-      ></ngx-avatar>
-      <h3>Nome do professor</h3>
-      <h5>Disciplina atual do professor</h5>
+      <ngx-avatar class="my-avatar" size="120" [name]="name"></ngx-avatar>
+      <h3>{{ teacher.name }}</h3>
+      <h5>{{ teacher.currentDiscipline }}</h5>
       <ngb-rating max="5" [(rate)]="currentRate"></ngb-rating>
-      <button class="button" type="submit">Avaliar</button>
+      <button (click)="toEvaluate()" class="button" type="submit">Avaliar</button>
+    </div>
+
+    <div class="note" *ngIf="computed">
+      <h3>Obrigado!</h3>
     </div>
 
     <div class="previous">
       <h2>Avaliações Anteriores</h2>
       <div class="list">
-        <div class="evaluation" *ngFor="let evaluation of evaluations">
+        <div class="evaluation" *ngFor="let evaluation of teacher.previous">
           <div class="card">
             <div class="info">
               <h4>{{ evaluation.subject }}</h4>
@@ -33,5 +33,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="loading" *ngIf="loading">
+    <loading></loading>
   </div>
 </section>

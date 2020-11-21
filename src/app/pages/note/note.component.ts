@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { EvaluationService } from '../../services/evaluation.service';
+import { Teacher } from '../../models/Teacher';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-note',
@@ -9,24 +13,33 @@ import { ActivatedRoute } from '@angular/router';
 export class NoteComponent implements OnInit {
   public id: number;
   currentRate = 5;
-  public evaluations: Array<any> = [];
+  public teacher: any;
+  public name: string;
+  public loading: boolean;
+  public computed: boolean;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(
+    private route: ActivatedRoute,
+    private service: EvaluationService,
+    private toastr: ToastrService
+  ) {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
-    this.evaluations = [
-      {
-        subject: 'Programação 2',
-        note: '4',
-        period: '2019.2',
-      },
-      { subject: 'Leda', note: '5', period: '2019.1' },
-      { subject: 'Analise de sistemas', note: '3', period: '2018.2' },
-      { subject: 'Projeto de Software', note: '2', period: '2018.1' },
-      { subject: 'Redes de computadores', note: '1', period: '2017.2' },
-    ];
+    this.loading = false;
+    this.computed = false;
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.service.getById(this.id).subscribe((item) => {
+      this.loading = true;
+      this.teacher = item;
+      this.name = this.teacher.name;
+    });
+  }
+
+  toEvaluate(){
+    this.computed = true;
+    this.toastr.success('Voto Computado com Sucesso!')
+  }
 }

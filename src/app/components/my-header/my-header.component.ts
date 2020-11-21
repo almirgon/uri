@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {EmitterService} from '../../services/emitter.service'
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'my-header',
@@ -9,11 +11,17 @@ import { Router } from '@angular/router';
 export class MyHeaderComponent implements OnInit {
   public logged: boolean;
   public admin: boolean;
-  constructor(private route: Router) {}
+  constructor(private route: Router, private emitter: EmitterService) {
+    this.logged = false;
+    this.admin = false;
+  }
 
   ngOnInit(): void {
-    this.logged = true;
-    this.admin = false;
+    this.emitter.getValues().subscribe((data) => data.forEach(element => {
+      this.logged = element.logged;
+      this.admin = element.admin;
+    }));
+    
   }
 
   goToLogin() {
@@ -50,6 +58,9 @@ export class MyHeaderComponent implements OnInit {
 
   logout() {
     this.logged = false;
+    if(this.admin === true){
+      this.admin = false;
+    }
     this.route.navigate(['/login']);
   }
 }

@@ -81,7 +81,7 @@
       </div>
     </div>
 
-    <button class="button" [disabled]="!formRegister.valid" type="submit">
+    <button (click)="register()" class="button" [disabled]="!formRegister.valid" type="submit">
       Cadastrar
     </button>
     <div class="loading" *ngIf="loading">

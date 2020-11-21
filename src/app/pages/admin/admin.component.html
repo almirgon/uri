@@ -27,33 +27,33 @@
       <div class="form-group">
         <input
           placeholder="Disciplina"
-          [class.is-invalid]="isFormFieldInvalid('subject')"
-          formControlName="subject"
+          [class.is-invalid]="isFormFieldInvalid('currentDiscipline')"
+          formControlName="currentDiscipline"
           type="text"
         />
 
         <div class="messages">
-          <small class="text-danger" *ngIf="hasError('subject', 'required')"
+          <small class="text-danger" *ngIf="hasError('currentDiscipline', 'required')"
             >*Campo obrigatório</small
           >
-          <small class="text-danger" *ngIf="hasError('subject', 'minlength')"
+          <small class="text-danger" *ngIf="hasError('currentDiscipline', 'minlength')"
             >*Tamanho mínimo de 2 caracteres</small
           >
         </div>
       </div>
-      <button class="button" type="submit" [disabled]="!formAdmin.valid">
+      <button (click)="addTeacher()" class="button" type="submit" [disabled]="!formAdmin.valid">
         Adicionar
       </button>
     </form>
     <div class="list">
       <div class="my-loop" *ngFor="let item of all_list">
-        <div class="card" (click)="redirectTo(item)">
+        <div class="card" >
           <div class="info">
-            <h3>{{ item.nome }}</h3>
-            <p>{{ item.disciplina }}</p>
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.currentDiscipline }}</p>
           </div>
           <div class="btns">
-            <span class="material-icons"> delete </span>
+            <span (click)="delete(item.id)" class="material-icons"> delete </span>
           </div>
         </div>
       </div>

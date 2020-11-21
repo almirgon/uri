@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-vote',
@@ -11,7 +12,7 @@ export class AdminVoteComponent implements OnInit {
   public open: boolean;
   public close: boolean;
 
-  constructor() {
+  constructor(private toastr: ToastrService) {
     this.period = new FormControl('');
     this.open = true;
     this.close = false;
@@ -22,10 +23,13 @@ export class AdminVoteComponent implements OnInit {
   openVote() {
     this.open = false;
     this.close = true;
+    this.toastr.success('Votação aberta!')
   }
 
   closeVote() {
     this.open = true;
     this.close = false;
+    this.toastr.success('Votação encerrada!')
+
   }
 }

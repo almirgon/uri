@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { User } from '../../models/User';
+import {RegisterService} from '../../services/register.service'
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'register',
@@ -13,7 +16,7 @@ export class RegisterComponent implements OnInit {
   public successful: boolean;
   public loading: boolean;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private registerService: RegisterService, private toastr: ToastrService) {
     this.loading = false;
     this.successful = true;
     this.formRegister = new FormGroup({
@@ -47,7 +50,12 @@ export class RegisterComponent implements OnInit {
     user.password = this.formRegister.get('password').value;
     this.loading = true;
 
-    //this.redirectToLogin();
+    this.registerService.registerUser(user).subscribe(() => {
+      this.loading = false;
+      this.toastr.success('Cadastro Realizado com Sucesso!');
+      this.redirectToLogin();
+    });
+
   }
 
   isFormFieldInvalid(field: string): boolean {

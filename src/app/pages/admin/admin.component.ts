@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AdminService } from '../../services/admin.service';
+import {Teacher} from '../../models/Teacher'
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-admin',
@@ -8,73 +12,51 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
   public formAdmin: FormGroup;
-  public period;
-  all_list: any = [];
+  public all_list: Array<any> = [];
+  public loading: boolean;
+  
 
-  constructor() {
+  constructor(private adminService: AdminService, private toastr: ToastrService) {
     this.formAdmin = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      subject: new FormControl('', [
+      currentDiscipline: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
       ]),
     });
-    period: new FormControl('', [Validators.required, Validators.minLength(4)]);
-    this.all_list = [
-      {
-        id: 1,
-        nome: 'Dalton Serrey',
-        disciplina: 'Programação 1',
-      },
-      {
-        id: 2,
-        nome: 'Melina Mongiovi',
-        disciplina: 'Projeto de Software',
-      },
-      {
-        id: 3,
-        nome: 'Joseana Fechine',
-        disciplina: 'Organização de Computadores',
-      },
-      {
-        id: 4,
-        nome: 'Adalberto Cajueiro',
-        disciplina: 'Estrutura de Dados',
-      },
-      {
-        id: 5,
-        nome: 'João Arthur',
-        disciplina: 'Arquitetura de Software',
-      },
-      {
-        id: 6,
-        nome: 'Franklin Ramalho',
-        disciplina: 'Análise de Sistemas',
-      },
-      {
-        id: 7,
-        nome: 'Kyller Gorgônio',
-        disciplina: 'Teoria da Computação',
-      },
-      {
-        id: 8,
-        nome: 'Rohit Gheyi',
-        disciplina: 'Engenharia de Software',
-      },
-      {
-        id: 9,
-        nome: 'Joao',
-        disciplina: 'Redes de Computadores',
-      },
-      {
-        id: 10,
-        nome: 'Francisco Brasileiro',
-        disciplina: 'Sistemas Operacionais',
-      },
-    ];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.adminService.newTeacherSubject.subscribe((data) =>{
+        this.all_list.push(data);
+    })
+    this.adminService.getAll().subscribe((itens) => {
+      itens.forEach(item => {
+        this.all_list.push(item)
+      });
+    })
+  }
+
+  delete(id){
+    this.adminService.deleteById(id).subscribe(() =>{
+      const index = this.all_list.findIndex((teacher) => teacher.id === id);
+      this.all_list.splice(index, 1);
+      this.toastr.success('Deletado com Sucesso!');
+    })
+  }
+
+  addTeacher(){
+    let teacher = new Teacher();
+    teacher.name = this.formAdmin.get('name').value;
+    teacher.currentDiscipline = this.formAdmin.get('currentDiscipline').value;
+    this.loading = true;
+
+    this.adminService.add(teacher).subscribe(() =>{
+      this.loading = false;
+      this.adminService.newTeacherSubject.next(teacher);
+      this.toastr.success('Adicionado com Sucesso!');
+    })
+  }
 
   isFormFieldInvalid(field: string): boolean {
     const ctrl = this.formAdmin.get(field);

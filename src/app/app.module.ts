@@ -50,7 +50,7 @@ import { AdminVoteComponent } from './pages/admin-vote/admin-vote.component';
     AvatarModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      timeOut: 3000,
+      timeOut: 5000,
       positionClass: 'toast-bottom-right',
       maxOpened: 3,
       preventDuplicates: true,

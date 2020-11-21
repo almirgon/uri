@@ -17,7 +17,6 @@
 .flex {
   width: 50%;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   color: white;
@@ -25,6 +24,7 @@
   position: absolute;
   right: 0;
   margin-top: 65px;
+  min-height: 100%;
 }
 
 h2 {
@@ -39,6 +39,17 @@ h2 {
   font-weight: normal;
   user-select: none;
   outline: none;
+}
+
+.msg-not-found {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  margin-top: 5%;
 }
 
 h3 {

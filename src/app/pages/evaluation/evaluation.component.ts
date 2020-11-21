@@ -9,15 +9,26 @@ import { EvaluationService } from '../../services/evaluation.service';
 })
 export class EvaluationComponent implements OnInit {
   all_list: Array<any> = [];
+  name: string = '';
+  objeto: any;
+  public loading: boolean;
+  public notFound: boolean;
 
-  constructor(private router: Router, private service: EvaluationService) {}
+  constructor(private router: Router, private service: EvaluationService) {
+    
+  }
 
-  ngOnInit() {
-    this.service.getAll().subscribe((itens) => {
-      itens.forEach((item) => {
-        console.log(item);
-        this.all_list.push(item);
-      });
+  ngOnInit() {}
+
+  coisa() {
+    this.loading = true;
+    this.service.getAll(this.name).subscribe((itens) => {
+      this.loading = false;
+      this.objeto = itens;
+      this.notFound = false;
+      if(this.objeto.length === 0){
+        this.notFound = true;
+      }
     });
   }
 

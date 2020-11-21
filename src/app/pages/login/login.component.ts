@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {EmitterService} from '../../services/emitter.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'login',
@@ -12,7 +14,7 @@ export class LoginComponent implements OnInit {
   public loginSuccessful: boolean;
   public loading: boolean;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private emitter: EmitterService, private toastr: ToastrService) {
     this.loginSuccessful = true;
     this.loading = false;
 
@@ -32,6 +34,23 @@ export class LoginComponent implements OnInit {
     let email = this.formLogin.get('email').value;
     let password = this.formLogin.get('password').value;
     this.loading = true;
+    let name = email.substring(0, email.lastIndexOf("@"));
+    if(name === 'admin'){
+      this.loading = false;
+      let withAdmin = [{logged: true, admin: true}];
+      this.emitter.myValues(withAdmin);
+      this.toastr.success(`Entrando em conta admin`);
+      this.router.navigate(['/admin']);
+      
+    }else{
+      let withoutAdmin = [{logged: true, admin: false}];
+      this.emitter.myValues(withoutAdmin);
+      const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
+      let firstName = nameCapitalized.substring(0, nameCapitalized.lastIndexOf("."));
+      this.toastr.success("Seja Bem vindo ao Uni", `Olá ${firstName}!`);
+      this.router.navigate(['/home']);
+
+    }
   }
 
   isFormFieldInvalid(field: string): boolean {
