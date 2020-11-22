@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/models/User';
+import {ProfileService} from '../../services/profile.service'
 
 @Component({
   selector: 'app-profile',
@@ -9,26 +10,32 @@ import { User } from 'src/app/models/User';
 })
 export class ProfileComponent implements OnInit {
   editUser: FormGroup;
+  user: User = new User();
 
-  constructor() {
+  constructor(private profileService: ProfileService) {
     this.editUser = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       lastName: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
       ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-      ]),
       email: new FormControl('', [
         Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),
       ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.profileService.get().subscribe((data) =>{
+      this.user.firstName = data.firstName;
+    
+    })
+  }
 
   edit() {
     const user = new User();

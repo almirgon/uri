@@ -14,7 +14,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(private router: Router) {
     this.sucessful = true;
-    this.loading = true;
+    this.loading = false;
 
     this.formForgot = new FormGroup({
       email: new FormControl('', [
@@ -27,7 +27,7 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit(): void {}
 
   sendEmail() {
-    this.loading = true;
+    
   }
 
   isFormFieldInvalid(field: string): boolean {

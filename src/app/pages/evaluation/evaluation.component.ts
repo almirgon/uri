@@ -20,7 +20,7 @@ export class EvaluationComponent implements OnInit {
 
   ngOnInit() {}
 
-  coisa() {
+  search() {
     this.loading = true;
     this.service.getAll(this.name).subscribe((itens) => {
       this.loading = false;

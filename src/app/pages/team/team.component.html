@@ -3,5 +3,19 @@
     <img src="../../../assets/imgs/team.gif" alt="uni-team" />
   </div>
 
-  <div class="about"></div>
+  <div class="about">
+    <h2>Equipe</h2>
+    <div class="list">
+      <div class="my-loop" *ngFor="let item of team">
+        <div class="info">
+            <h5>{{ item.name }}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="loading" *ngIf="loading">
+      <loading></loading>
+    </div>
+  </div>
+
+  
 </section>

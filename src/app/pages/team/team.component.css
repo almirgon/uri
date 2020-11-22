@@ -23,6 +23,15 @@
   margin-top: 65px;
 }
 
+h2 {
+  user-select: none;
+}
+
+h5 {
+  text-align: center;
+  user-select: none;
+}
+
 @media (max-width: 800px) {
   .team-page {
     flex-direction: column;

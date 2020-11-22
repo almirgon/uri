@@ -1,10 +1,6 @@
 {
   "login": [
-    {
-      "id": 1,
-      "email": "gustavo@gmail.com",
-      "password": "123456"
-    }
+   
   ],
   "register": [
     {
@@ -13,41 +9,6 @@
       "lastName": "Uni",
       "email": "admin@admin.com",
       "password": "admin123"
-    },
-    {
-      "firstName": "Almir",
-      "lastName": "Crispiniano",
-      "email": "almir.crispiniano@ccc.ufcg.edu.br",
-      "password": "12345",
-      "id": 2
-    },
-    {
-      "firstName": "Almir",
-      "lastName": "Crispiniano",
-      "email": "almir.crispiniano@ccc.ufcg.edu.br",
-      "password": "12345",
-      "id": 3
-    },
-    {
-      "firstName": "Almir",
-      "lastName": "Crispiniano",
-      "email": "almir.crispiniano@ccc.ufcg.edu.br",
-      "password": "12345",
-      "id": 4
-    },
-    {
-      "firstName": "Almir",
-      "lastName": "Crispiniano",
-      "email": "almir.crispiniano@ccc.ufcg.edu.br",
-      "password": "12345",
-      "id": 5
-    },
-    {
-      "firstName": "Almir",
-      "lastName": "Crispiniano",
-      "email": "almir.crispiniano@ccc.ufcg.edu.br",
-      "password": "12345",
-      "id": 6
     }
   ],
   "evaluation": [
@@ -246,7 +207,7 @@
     },
     {
       "id": 7,
-      "notice": "Link de aulas de calculo com grings",
+      "notice": "Link de aulas de calculo com grings [https://bit.ly/3kYkUgm]",
       "name": "Leticia Lima",
       "date": "15/11/2020",
       "likes": 4
@@ -301,7 +262,45 @@
       "id": 9
     }
   ],
+  "team": [
+    {
+      "name": "Almir Gonçalves Crispiniano"
+    },
+    {
+      "name": "Arthur Fernandes de Andrade"
+    },
+    {
+      "name": "Caroliny Mylena Bezerra da Silva"
+    },
+    {
+      "name": "Danilo Cezar Ribeiro Garcia de Medeiros"
+    },
+    {
+      "name": "José Guilherme Coelho de Oliveira"
+    },
+    {
+      "name": "José Adrião Barbosa Mendes Junior"
+    },
+    {
+      "name": "Isaías Martins Teixeira Pontes"
+    },
+    {
+      "name": "Higor Roberto Ferreira Araujo"
+    },
+    {
+      "name": "Matheus Augusto Silva do Nascimento"
+    },
+    {
+      "name": "Wesley Felipe Gurgel de Almeida"
+    },
+    {
+      "name": "Victor Arruda Camara Virgolino"
+    }
+  ],
   "profile": {
-    "name": "typicode"
+    "firstName": "Gustavo",
+    "lastName": "Dias",
+    "email": "gustavo.dias@ccc.ufcg.edu.br",
+    "password": "Guga0506"
   }
 }

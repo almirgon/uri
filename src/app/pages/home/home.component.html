@@ -4,8 +4,8 @@
   </div>
   <div class="flex">
     <h2>Feed</h2>
-    <textarea type="text" placeholder="O que você está pensando?"></textarea>
-    <button class="button" type="submit">Publicar</button>
+    <textarea id="publi" type="text" placeholder="O que você está pensando?"></textarea>
+    <button (click)="post()" class="button" type="submit">Publicar</button>
     <div class="list">
       <div class="my-loop" *ngFor="let item of feed">
         <div class="card">

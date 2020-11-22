@@ -1,35 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class FeedService {
+export class TeamService {
 
   private apiUrl: string;
-  public newPost = new Subject<any>();
 
   constructor(private http: HttpClient) {
     const myAPI = environment.url;
-    this.apiUrl = myAPI + '/feed';
+    this.apiUrl = myAPI + '/team';
   }
 
   getAll(): Observable<any> {
     const url = this.apiUrl;
     return this.http.get(url);
   }
-
-  post(publi){
-    const url = this.apiUrl;
-    return this.http.post(url, publi);
-  }
-
-  deletePost(id){
-    const url = this.apiUrl + '/' + id;
-    return this.http.delete(url);
-  }
-
-  
 }
